@@ -1,11 +1,9 @@
 'use client';
 
 import Link from 'next/link';
-import { useTheme } from '@/contexts/ThemeContext';
-import { SunIcon, MoonIcon } from '@heroicons/react/24/outline';
+import ThemeToggle from '@/components/ThemeToggle';
 
 export default function Header() {
-  const { theme, toggleTheme } = useTheme();
 
   return (
     <header className="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 shadow-sm">
@@ -35,17 +33,7 @@ export default function Header() {
           </nav>
 
           <div className="flex items-center space-x-4">
-            <button
-              onClick={toggleTheme}
-              className="p-2 rounded-md text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-              aria-label={theme === 'light' ? 'ダークモードに切り替え' : 'ライトモードに切り替え'}
-            >
-              {theme === 'light' ? (
-                <MoonIcon className="h-5 w-5" />
-              ) : (
-                <SunIcon className="h-5 w-5" />
-              )}
-            </button>
+            <ThemeToggle />
           </div>
         </div>
       </div>

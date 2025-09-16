@@ -36,10 +36,6 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     setTheme(prev => prev === 'light' ? 'dark' : 'light');
   };
 
-  if (!mounted) {
-    return <div className="min-h-screen bg-white dark:bg-gray-900">{children}</div>;
-  }
-
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
       {children}
@@ -50,6 +46,10 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 export function useTheme() {
   const context = useContext(ThemeContext);
   if (context === undefined) {
+    // SSRの場合はデフォルト値を返す
+    if (typeof window === 'undefined') {
+      return { theme: 'light' as Theme, toggleTheme: () => {} };
+    }
     throw new Error('useTheme must be used within a ThemeProvider');
   }
   return context;

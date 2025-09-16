@@ -2,9 +2,21 @@
 
 import { useTheme } from '@/contexts/ThemeContext';
 import { SunIcon, MoonIcon } from '@heroicons/react/24/outline';
+import { useEffect, useState } from 'react';
 
 export default function ThemeToggle() {
   const { theme, toggleTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return (
+      <div className="p-2 rounded-md w-9 h-9" aria-hidden="true" />
+    );
+  }
 
   return (
     <button
