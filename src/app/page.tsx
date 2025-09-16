@@ -1,9 +1,11 @@
-'use client';
-
 import Link from 'next/link';
 import { ArrowRightIcon, BookOpenIcon, UsersIcon, AcademicCapIcon } from '@heroicons/react/24/outline';
+import { getAllProblems } from '@/lib/problems';
 
 export default function Home() {
+  // 最新の2つの問題を取得
+  const allProblems = getAllProblems();
+  const recentProblems = allProblems.slice(0, 2);
   return (
     <div className="bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 min-h-screen">
       {/* Hero Section */}
@@ -98,55 +100,44 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-            <div className="bg-white dark:bg-gray-900 rounded-lg shadow-md p-6 border border-gray-200 dark:border-gray-700">
-              <div className="flex items-center mb-3">
-                <span className="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-xs font-medium px-2.5 py-0.5 rounded">
-                  代数
-                </span>
-                <span className="ml-2 text-sm text-gray-500 dark:text-gray-400">by takeshi</span>
+            {recentProblems.length > 0 ? (
+              recentProblems.map((problem) => (
+                <div key={problem.id} className="bg-white dark:bg-gray-900 rounded-lg shadow-md p-6 border border-gray-200 dark:border-gray-700">
+                  <div className="flex items-center mb-3">
+                    <span className={`text-xs font-medium px-2.5 py-0.5 rounded ${
+                      problem.category === '代数' ? 'bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200' :
+                      problem.category === '物理' ? 'bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200' :
+                      problem.category === '化学' ? 'bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200' :
+                      problem.category === '幾何' ? 'bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200' :
+                      'bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200'
+                    }`}>
+                      {problem.category}
+                    </span>
+                    <span className="ml-2 text-sm text-gray-500 dark:text-gray-400">by {problem.author}</span>
+                  </div>
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                    {problem.title}
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-400 text-sm mb-4">
+                    {problem.description}
+                  </p>
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm text-gray-500 dark:text-gray-400">推定時間: {problem.estimatedTime}</span>
+                    <Link
+                      href={`/problems/${problem.slug}`}
+                      className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 text-sm font-medium"
+                    >
+                      解いてみる →
+                    </Link>
+                  </div>
+                </div>
+              ))
+            ) : (
+              <div className="col-span-2 text-center py-8">
+                <p className="text-gray-500 dark:text-gray-400">まだ問題が登録されていません。</p>
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-                二次方程式の解の公式
-              </h3>
-              <p className="text-gray-600 dark:text-gray-400 text-sm mb-4">
-                二次方程式を解の公式を使って解く問題です。
-              </p>
-              <div className="flex items-center justify-between">
-                <span className="text-sm text-gray-500 dark:text-gray-400">推定時間: 15分</span>
-                <Link
-                  href="/problems/takeshi/quadratic-equation"
-                  className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 text-sm font-medium"
-                >
-                  解いてみる →
-                </Link>
-              </div>
-            </div>
-
-            <div className="bg-white dark:bg-gray-900 rounded-lg shadow-md p-6 border border-gray-200 dark:border-gray-700">
-              <div className="flex items-center mb-3">
-                <span className="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 text-xs font-medium px-2.5 py-0.5 rounded">
-                  物理
-                </span>
-                <span className="ml-2 text-sm text-gray-500 dark:text-gray-400">by yuki</span>
-              </div>
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-                等加速度運動
-              </h3>
-              <p className="text-gray-600 dark:text-gray-400 text-sm mb-4">
-                自由落下の問題を通して等加速度運動を理解しましょう。
-              </p>
-              <div className="flex items-center justify-between">
-                <span className="text-sm text-gray-500 dark:text-gray-400">推定時間: 10分</span>
-                <Link
-                  href="/problems/yuki/physics-motion"
-                  className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 text-sm font-medium"
-                >
-                  解いてみる →
-                </Link>
-              </div>
-            </div>
-          </div>
-
+            )}
+          </div>          
           <div className="text-center">
             <Link
               href="/problems"
