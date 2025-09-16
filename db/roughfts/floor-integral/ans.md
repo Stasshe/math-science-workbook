@@ -112,13 +112,12 @@ $$
 $$
 であり、これを用いて
 $$
-\int_0^{n\pi} \lfloor{t}\rfloor + t \space dx = \Bigg( \sum_{k=0}^{n} k \Bigg)+ \Bigg( \int_0^{n\pi} \frac{x + sin4x }{ \pi } dx \Bigg)
+\int_0^{n\pi} \lfloor{t}\rfloor + t \space dx = \Bigg( \sum_{k=0}^{n} k\cdot \pi \Bigg)+ \Bigg( \int_0^{n\pi} \frac{x + sin4x }{ \pi } dx \Bigg)
 \\
 = \sum_{k=1}^{n-1} k\pi + \int_0^{n\pi}\frac{x + sin4x }{\pi} dx
 \\
 =\frac{n(n-1)}{2}\cdot\pi + \frac{1}{\pi}\Bigg[ \frac{x^2}{2} - \frac{cos4x}{4}\Bigg]_0^{n\pi}
-$$
-$$
+\\
 =\pi\cdot\frac{n(n-1)}{2} + \frac{1}{\pi}\Bigg( \frac{(n\pi)^2}{2} - \frac{cos(4\pi \cdot n)}{4} + \frac{cos0}{4}\Bigg)_0^{n\pi}
 \\
 =\frac{\pi n(2n-1)}{2}.
