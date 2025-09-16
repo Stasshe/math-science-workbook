@@ -1,0 +1,10 @@
+{
+  "title": "積分上級：床関数",
+  "author": "roughfts",
+  "category": "数学",
+  "difficulty": "上級",
+  "estimatedTime": "30分",
+  "keywords": ["floor", "積分", "三角関数", "不等式評価"],
+  "date": "2025-09-16",
+  "description": "床関数を積分してみよう。激ムズ不等式評価include"
+}
