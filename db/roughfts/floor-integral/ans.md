@@ -60,7 +60,7 @@ i.e. \space\space\alpha \in (\frac{\pi}{8}, \frac{3\pi}{8}).
 $$
 ここで、端点で$f(0)=0, f(\pi) = \pi$は明らかで、$(0,\pi)$での極値を調べる。
 $$
-f(\alpha) = \alpha + sin4\alpha = x \pm \frac{\sqrt{15}}{4}
+f(\alpha) = \alpha + sin4\alpha = \alpha \pm \frac{\sqrt{15}}{4}
 $$
 $\textcircled{3}$より、値は極大値または極小値である。
 
