@@ -7,7 +7,7 @@ $$
 $$
 f(\pi - x) = \pi - f(x)
 $$
-が成り立つ。よって区間$[0,\pi]$で、上の値は$\frac{\pi}{2}$を軸に左右中心である。
+が成り立つ。f(x)は点$(\tfrac{\pi}{2}, f(\tfrac{\pi}{2}))$を中心に点対称である
 
 <hr style="height:5px; background-color:white;">
 
